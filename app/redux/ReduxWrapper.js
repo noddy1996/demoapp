@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
-import { getCategories, getProductDetail, getProducts } from './actions';
+import { createProduct, getCategories, getProductDetail, getProducts } from './actions';
 import { toggleDarkMode } from './appStateAction';
  
 
@@ -13,7 +13,8 @@ export const mapDispatchToProps = {
   toggleDarkMode$:toggleDarkMode,
   $getProducts:getProducts,
   $getProductDetail:getProductDetail,
-  $getCategories:getCategories
+  $getCategories:getCategories,
+  $createProduct:createProduct
    
 };
 

@@ -1,6 +1,6 @@
 import {  all } from "redux-saga/effects"
 import { workerGetError } from "./saga/errorSaga"
-import { watcherGetCategory, watcherGetProduct, watcherGetProductDetail,  } from "./saga/productSaga"
+import { watcherCreateProduct, watcherGetCategory, watcherGetProduct, watcherGetProductDetail,  } from "./saga/productSaga"
 
 
 //1 worker saga
@@ -18,6 +18,7 @@ export default function* rootSaga() {
   yield all([
     watcherGetProduct(),
     watcherGetCategory(),
-    watcherGetProductDetail()
+    watcherGetProductDetail(),
+    watcherCreateProduct()
   ])
 }

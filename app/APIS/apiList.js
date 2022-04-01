@@ -4,6 +4,7 @@ const URL=`${BASE_URL}case-study/`
 
 
 export const GET_PRODUCTS_API=`${URL}products/`
+export const CREATE_PRODUCTS_API=`${URL}products/`
 export const GET_CATEGORIES_API=`${URL}categories/`
 
 // 1. Products

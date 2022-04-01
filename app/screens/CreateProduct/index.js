@@ -1,20 +1,33 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View,ActivityIndicator} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import Container from '../../components/Container';
 import CustomButton from '../../components/CustomButton';
 import CustomInput from '../../components/CustomInput';
 import Label from '../../components/Label';
 import ReduxWrapper from '../../redux/ReduxWrapper';
+import { AlertHelper } from '../../utils/AlertHelper';
 import {shadow} from '../../utils/appColors';
 
-const CreateProduct = ({products}) => {
+const CreateProduct = ({products,$createProduct,navigation}) => {
   const [productName, setProductName] = useState(null);
   const [price, setPrice] = useState(null);
   const [description, setDescription] = useState(null);
   const [img, setImg] = useState(null);
   const [selectedCate, setSelectedCate] = useState("")
+  const [cateId, setCateId] = useState()
 
+  const onAdd =()=>{
+    // $createProduct(12)
+    $createProduct({name:productName,price,description,image:img,category:cateId,callback})
+    // nst{name,price,category,description,image}=action.payload
+  }
+  const callback=(status)=>{
+    if(status){
+      AlertHelper.show("success","Success","Product Added")
+      navigation.popToTop()
+    }
+  }
   return (
     <Container  containerStyle={styles.container}>
       <ScrollView >
@@ -51,9 +64,9 @@ const CreateProduct = ({products}) => {
           return (
             <View key={key} style={{height:scale(60)}}>
               <CustomButton
-              onPress={()=>setSelectedCate(val.name)}
+              onPress={()=>{setSelectedCate(val?.name);setCateId(val?.id)}}
 
-                outlined={selectedCate===val.name}
+                outlined={cateId===val.id}
                 label={val.name}
                 style={{
                   paddingHorizontal: scale(10),
@@ -72,6 +85,7 @@ const CreateProduct = ({products}) => {
       <CustomButton
         outlined={false}
         label={'Add Product'}
+        onPress={onAdd}
         style={{
           paddingHorizontal: scale(10),
           marginRight: scale(10),
