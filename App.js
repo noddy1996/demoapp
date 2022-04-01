@@ -30,8 +30,8 @@ const App: () => React$Node = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <DetailsScreen />
-        {/* {navigationTypeTabs ? <TabNavigationStack /> : <MainStack />} 
+        
+        {navigationTypeTabs ? <TabNavigationStack /> : <MainStack />} 
         <DropdownAlert
           defaultContainer={{
             padding: 8,
@@ -40,7 +40,7 @@ const App: () => React$Node = () => {
           }}
           ref={(ref) => AlertHelper.setDropDown(ref)}
           onClose={() => AlertHelper.invokeOnClose()}
-        /> */}
+        />
       </PersistGate>
     </Provider>
   );

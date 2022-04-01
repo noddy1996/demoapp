@@ -16,3 +16,4 @@ export const starterIntro = [
 
 export const img =
   'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZnVybml0dXJlfGVufDB8fDB8fA%3D%3D';
+export const dummyImage="https://i.pinimg.com/736x/3f/eb/3b/3feb3b2cb0d267cd632c32cfdb95a958.jpg"
