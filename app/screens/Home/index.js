@@ -8,6 +8,7 @@ import HomeCard from './HomeCard';
 import { scale } from 'react-native-size-matters';
 import { shadow } from '../../utils/appColors';
 import CustomHeader from '../../components/CustomHeader';
+import CustomFab from '../../components/CustomFab';
 
 function Home({toggleDarkMode$}) {
     
@@ -37,10 +38,11 @@ function Home({toggleDarkMode$}) {
           <FlatList
           ListHeaderComponent={_header}
           numColumns={2}
-          data={[1,2,3]}
+          data={[1,2,3,4,5,6,7,8]}
           renderItem={_render}
           keyExtractor={(item,index)=>"key"+index}
           />
+          <CustomFab  onPress={()=>alert("xx")}/>
       </Container>
     )
 }

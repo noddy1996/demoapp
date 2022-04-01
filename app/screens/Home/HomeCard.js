@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,Image } from 'react-native'
+import { StyleSheet, Text, View,Image,Pressable } from 'react-native'
 import React from 'react'
 import { appColors, shadow } from '../../utils/appColors'
 import {wp} from '../../utils/Responsive'
@@ -6,9 +6,12 @@ import { scale } from 'react-native-size-matters'
 import { dummyImage } from '../../utils/MockData'
 import Label from '../../components/Label'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { useNavigation } from '@react-navigation/native'
+
 export default function HomeCard() {
+    const navigation=useNavigation()
   return (
-    <View style={styles.container}>
+    <Pressable onPress={()=>navigation.navigate("Details")} style={styles.container}>
      <Image source={{uri:dummyImage}} style={styles.image}/>
      <View style={styles.bottom}>
      <Label style={styles.label} text={"New"} />
@@ -18,7 +21,7 @@ export default function HomeCard() {
             <FontAwesome name='pencil' color={appColors.white} size={scale(18)}/>
         </View>
      </View>
-    </View>
+    </Pressable>
   )
 }
 
