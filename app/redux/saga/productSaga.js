@@ -4,11 +4,11 @@ import { CREATE_PRODUCTS_API, GET_CATEGORIES_API, GET_PRODUCTS_API } from '../..
 import { AlertHelper } from '../../utils/AlertHelper';
 import RequestMaker from '../../utils/service/RequestMaker';
 import { CREATE_PRODUCT, CREATE_PRODUCT_SUCCESS, GET_CATEGORIES_SUCCESS, GET_PRODUCTS, GET_PRODUCTS_SUCCESS, GET_PRODUCT_DETAIL, GET_PRODUCT_DETAIL_SUCCESS, SET_ERROR } from '../actionTypes';
-export function* workerGetProduct() {
+export function* workerGetProduct(action) {
 
 
   const response = yield RequestMaker(GET_PRODUCTS_API);
-
+action?.payload?.callback(true)
   yield put({ type: GET_PRODUCTS_SUCCESS, payload: response })
 
 }

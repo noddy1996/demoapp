@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, ScrollView, FlatList} from 'react-native';
+import React, {useEffect, useMemo, useState} from 'react';
+import {StyleSheet, Text, View, ScrollView, FlatList,RefreshControl} from 'react-native';
 import ReduxWrapper from '../../redux/ReduxWrapper';
 import Container from '../../components/Container';
 // import {  } from 'react-native-gesture-handler';
@@ -13,12 +13,22 @@ import {useNavigation} from '@react-navigation/native';
 
 function Home({toggleDarkMode$, $getProducts, products}) {
   const navigation = useNavigation();
+  const [refreshing, setRefreshing] = React.useState(false);
   const [selectedCate, setSelectedCate] = useState('All');
   const [productsArr, setProductsArr] = useState(products?.products || []);
-  useEffect(() => {
+  useMemo(() => {
     $getProducts();
   }, []);
 
+  const onRefresh=()=>{
+    setRefreshing(true)
+    $getProducts({callback});
+  }
+  const callback=()=>{
+    
+      setRefreshing(false)
+    
+  }
   useEffect(() => {
     selectedCate === 'All'
       ? setProductsArr(products?.products)
@@ -71,6 +81,12 @@ function Home({toggleDarkMode$, $getProducts, products}) {
     <Container>
       <CustomHeader title={'Upayments store'} />
       <FlatList
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+        />
+      }
         ListHeaderComponent={_header}
         numColumns={2}
         data={productsArr}

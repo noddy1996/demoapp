@@ -18,9 +18,9 @@ const CreateProduct = ({products,$createProduct,navigation}) => {
   const [cateId, setCateId] = useState()
 
   const onAdd =()=>{
-    // $createProduct(12)
+    
     $createProduct({name:productName,price,description,image:img,category:cateId,callback})
-    // nst{name,price,category,description,image}=action.payload
+    
   }
   const callback=(status)=>{
     if(status){
