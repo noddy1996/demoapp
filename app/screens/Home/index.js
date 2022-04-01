@@ -32,8 +32,7 @@ function Home({toggleDarkMode$}) {
     return (
         <View style={styles.container}>
         <View style={styles.header}>
-            <Label style={styles.headerText}
-            text={"React native starter kit with redux By `Amusoftech`"}/>
+            
         </View>
         <Container style={styles.scrollContainer} isScrollable>
         <CustomButton  label={"Enable Dark Mode"} onPress={()=> toggleDarkMode$()}/>
