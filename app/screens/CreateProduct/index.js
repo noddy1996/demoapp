@@ -5,17 +5,19 @@ import Container from '../../components/Container';
 import CustomButton from '../../components/CustomButton';
 import CustomInput from '../../components/CustomInput';
 import Label from '../../components/Label';
+import ReduxWrapper from '../../redux/ReduxWrapper';
 import {shadow} from '../../utils/appColors';
 
-const CreateProduct = () => {
+const CreateProduct = ({products}) => {
   const [productName, setProductName] = useState(null);
   const [price, setPrice] = useState(null);
   const [description, setDescription] = useState(null);
   const [img, setImg] = useState(null);
-  const [selectedCat, setSelectedCat] = useState('');
+  const [selectedCate, setSelectedCate] = useState("")
 
   return (
-    <Container containerStyle={styles.container}>
+    <Container  containerStyle={styles.container}>
+      <ScrollView >
       <CustomInput
         label={'Product Name'}
         placeholder={'Product Name'}
@@ -41,19 +43,22 @@ const CreateProduct = () => {
         value={img || null}
       />
       <Label
-        text={`Selected Category :${selectedCat}`}
+        text={`Selected Category :${selectedCate}`}
         style={styles.selectedCat}
       />
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((val, key) => {
+      <ScrollView  horizontal showsHorizontalScrollIndicator={false}>
+      {products?.categories?.map((val, key) => {
           return (
-            <View key={key}>
+            <View key={key} style={{height:scale(60)}}>
               <CustomButton
-                outlined={false}
-                label={'All'}
+              onPress={()=>setSelectedCate(val.name)}
+
+                outlined={selectedCate===val.name}
+                label={val.name}
                 style={{
                   paddingHorizontal: scale(10),
                   marginRight: scale(10),
+                  height:scale(40),
                   ...shadow,
                 }}
               />
@@ -61,6 +66,9 @@ const CreateProduct = () => {
           );
         })}
       </ScrollView>
+      </ScrollView>
+      
+      
       <CustomButton
         outlined={false}
         label={'Add Product'}
@@ -70,11 +78,12 @@ const CreateProduct = () => {
           ...shadow,
         }}
       />
+      
     </Container>
   );
 };
 
-export default CreateProduct;
+export default ReduxWrapper(CreateProduct);
 
 const styles = StyleSheet.create({
   container: {

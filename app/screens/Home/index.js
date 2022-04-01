@@ -11,24 +11,45 @@ import CustomHeader from '../../components/CustomHeader';
 import CustomFab from '../../components/CustomFab';
 import {useNavigation} from '@react-navigation/native';
 
-function Home({toggleDarkMode$}) {
+function Home({toggleDarkMode$,$getProducts,products}) {
   const navigation = useNavigation();
+  const [selectedCate, setSelectedCate] = useState("All")
+useEffect(() => {
+  $getProducts()
+  console.log("inUse");
+}, [])
 
-  const _render = () => {
-    return <HomeCard />;
+
+  const _render = ({item}) => {
+    
+    return <HomeCard  item={item}/>;
   };
   const _header = () => {
     return (
       <ScrollView horizontal>
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((val, key) => {
-          return (
-            <View key={key}>
-              <CustomButton
-                outlined={true}
-                label={'All'}
+        <CustomButton
+                outlined={selectedCate==="All"}
+                label={"All"}
+                onPress={()=>setSelectedCate("All")}
                 style={{
                   paddingHorizontal: scale(10),
                   marginRight: scale(10),
+                  height:scale(40),
+                  ...shadow,
+                }}
+              />
+        {products?.categories?.map((val, key) => {
+          return (
+            <View key={key}>
+              <CustomButton
+              onPress={()=>setSelectedCate(val.name)}
+
+                outlined={selectedCate===val.name}
+                label={val.name}
+                style={{
+                  paddingHorizontal: scale(10),
+                  marginRight: scale(10),
+                  height:scale(40),
                   ...shadow,
                 }}
               />
@@ -44,7 +65,7 @@ function Home({toggleDarkMode$}) {
       <FlatList
         ListHeaderComponent={_header}
         numColumns={2}
-        data={[1, 2, 3, 4, 5, 6, 7, 8]}
+        data={products?.products||[]}
         renderItem={_render}
         keyExtractor={(item, index) => 'key' + index}
       />

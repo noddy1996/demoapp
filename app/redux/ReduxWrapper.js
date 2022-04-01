@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
+import { getCategories, getProductDetail, getProducts } from './actions';
 import { toggleDarkMode } from './appStateAction';
  
 
@@ -9,7 +10,10 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = {
   //setLogin$:setLogin, here you can import your action
-  toggleDarkMode$:toggleDarkMode
+  toggleDarkMode$:toggleDarkMode,
+  $getProducts:getProducts,
+  $getProductDetail:getProductDetail,
+  $getCategories:getCategories
    
 };
 
