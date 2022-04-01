@@ -1,5 +1,5 @@
 /**
- * @author Amusoftech <er.amudeep@gmail.com>
+
  * @description Minimal example of Tab Navigations
  */
 import * as React from 'react';
@@ -9,11 +9,10 @@ import {appColors, shadow} from '../utils/appColors';
 
 const Tab = createBottomTabNavigator();
 /**
- * 
- * @param {*} routesArray 
+ *
+ * @param {*} routesArray
  * @returns {Tab.Navigator}
  * @description Tab Route Creator, it takes an array of routes and generate the routes for given array
- * @author <Er.amudeep@gmail.com>
  */
 export default function TabCerator({routes}) {
   return (
