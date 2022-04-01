@@ -35,7 +35,7 @@ function Home({toggleDarkMode$, $getProducts, products}) {
   };
   const _header = () => {
     return (
-      <ScrollView horizontal>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <CustomButton
           outlined={selectedCate === 'All'}
           label={'All'}
@@ -76,6 +76,7 @@ function Home({toggleDarkMode$, $getProducts, products}) {
         data={productsArr}
         renderItem={_render}
         keyExtractor={(item, index) => 'key' + index}
+        showsVerticalScrollIndicator={false}
       />
       <CustomFab onPress={() => navigation.navigate('Create')} />
     </Container>
